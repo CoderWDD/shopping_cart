@@ -39,7 +39,7 @@ export async function addGood(userId,goodsId,num,price){
 
 
 // 购物车列表
-export async function cartList(userId){
+export async function cartListApi(userId){
     return await myAxios.get('cart/listByUser',{
         params: {
             userId: userId
@@ -48,7 +48,7 @@ export async function cartList(userId){
 }
 
 // 删除购物车商品
-export async function deleteCartGood(userId,cartId){
+export async function deleteCartGoodApi(userId,cartId){
     return await myAxios.get('/cart/deleteById',{
         params: {
             userId: userId,
@@ -58,7 +58,7 @@ export async function deleteCartGood(userId,cartId){
 }
 
 // 添加订单信息
-export async function addOrder(userId,cartList){
+export async function addOrderApi(userId,cartList){
     return await myAxios.get('/order/addCastOrder',{
         params:{
             userId: userId,

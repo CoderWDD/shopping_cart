@@ -50,12 +50,13 @@ export default {
             this.goodsList = res.data
           })
     },
+
     loginAuto(){
       let username = localStorage.getItem("username")
       let password = localStorage.getItem('password')
 
       console.log(username + " | " + password)
-      if (username.length > 0 && password.length > 0){
+      if (username != null && password != null && username.length > 0 && password.length > 0){
         loginApi(username,password)
             .then(res => {
               this.globalProperties.userId = res.data
