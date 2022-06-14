@@ -1,22 +1,22 @@
 <template>
   <el-container v-if="!Item.delete">
-    <div class="sum_buy" style="position: relative;width: 1200px;margin: 0 auto;height: 180px;background-color: #fff4e8;">
-      <div class="buy_checkbox" style="position: absolute;left: 4px;line-height: 180px;">
-        <input class="singleCheckBox" type="checkbox" name="fav" v-model="Item.check"/>
-      </div>
-      <div class="buy_good1" style="position: absolute;left: 50px;top: 2.5px;width:187.5px;height:187.5px">
-        <img :src=" `http://202.193.53.235:8080/` + Item.thumbnail" style="width: 100%;">
-      </div>
-      <div class="introduction" style="position: absolute;left: 250px;width: 330px;line-height: 180px;" v-text="Item.name"></div>
-      <div class="buy_money" style="position: absolute;left: 575px;line-height: 180px;" v-text="`￥`+ Item.price"></div>
-      <div class="text">
-        <p class="goodName" v-text="Item.num" style="position: absolute;left: 750px;line-height: 180px; text-align: center;"></p>
-      </div>
-      <div class="buy_sum_money" style="position: absolute;left: 915px;line-height: 180px;" v-text="`￥` + Item.num * Item.price"></div>
-      <div class="buy_delete">
-        <button @click="onRemoveGood" style="position: absolute;left: 1090px;top: 79px;border: none;color: rgb(57, 73, 254);background-color: #fff4e8;">删除</button>
-      </div>
-    </div>
+    <el-container class="goodCardList">
+      <el-container class="checkbox">
+        <input class="singleCheckBox" type="checkbox" v-model="Item.check"/>
+      </el-container>
+      <el-container class="goodCardImage">
+        <img class="goodImg" :src=" `http://202.193.53.235:8080/` + Item.thumbnail" >
+      </el-container>
+      <el-container class="goodCardName" v-text="Item.name"></el-container>
+      <el-container class="goodCardPrice" v-text="`￥`+ Item.price"></el-container>
+      <el-container class="text">
+        <p class="goodNum" v-text="Item.num"></p>
+      </el-container>
+      <el-container class="orderSumMoney" v-text="`￥` + Item.num * Item.price"></el-container>
+      <el-container class="goodCardDelete">
+        <el-button @click="onRemoveGood">删除</el-button>
+      </el-container>
+    </el-container>
   </el-container>
 </template>
 
@@ -35,7 +35,6 @@ export default {
   },
   mounted() {
     this.Item =  this.item
-    console.log(this.item.num)
   },
   methods:{
     onRemoveGood(){
@@ -49,53 +48,57 @@ export default {
 
 <style scoped>
 
-.sum_buy {
+.goodCardList {
   position: relative;
   width: 1200px;
   margin: 0 auto;
   height: 180px;
   background-color: #fff4e8;
 }
-.buy_checkbox {
+.checkbox {
   position: absolute;
   left: 4px;
   line-height: 180px;
 }
-.sum_buy img {
-  width: 15%;
-}
-.buy_good1 {
+
+.goodCardImage {
   position: absolute;
   left: 50px;
   top: 2.5px;
+  width:187.5px;
+  height:187.5px
 }
-.introduction {
+
+.goodImg{
+  width: 100%;
+}
+
+.goodCardName {
   position: absolute;
-  left: 230px;
+  left: 250px;
   width: 330px;
   line-height: 180px;
 }
-.buy_money {
+
+.goodCardPrice {
   position: absolute;
   left: 575px;
   line-height: 180px;
 }
 
-.sum_buy .text input {
+.goodNum{
   position: absolute;
   left: 750px;
-  top: 75px;
-  height: 26px;
-  width: 30px;
+  line-height: 180px;
   text-align: center;
 }
 
-.buy_sum_money {
+.orderSumMoney {
   position: absolute;
   left: 915px;
   line-height: 180px;
 }
-.buy_delete button {
+.goodCardDelete button {
   position: absolute;
   left: 1090px;
   top: 79px;

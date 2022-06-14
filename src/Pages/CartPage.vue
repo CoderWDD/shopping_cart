@@ -3,16 +3,16 @@
 
     <SecondLine m-title="购物车列表"></SecondLine>
 
-    <el-container class="typs">
-      <div class="checkbox">
-        <input class="allCheckBox" type="checkbox" name="fav" @click="checkAll" value="{{checkAllFlag}}}"/>
-      </div>
-      <div class="all">全选</div>
-      <div class="good1">商品</div>
-      <div class="money">单价</div>
-      <div class="number">数量</div>
-      <div class="sum_money">小计</div>
-      <div class="delete">操作</div>
+    <el-container class="goodListHead">
+      <el-container class="checkbox">
+        <input class="allCheckBox" type="checkbox" name="fav" @click="checkAll" v-model="checkAllFlag"/>
+      </el-container>
+      <el-container class="goodCheckAll">全选</el-container>
+      <el-container class="goodName">商品</el-container>
+      <el-container class="goodPriceSingle">单价</el-container>
+      <el-container class="goodNum">数量</el-container>
+      <el-container class="goodPrice">小计</el-container>
+      <el-container class="goodDelete">操作</el-container>
     </el-container>
 
 
@@ -62,12 +62,12 @@ export default {
     this.userId = localStorage.getItem("userId")
     console.log(this.userId)
 
-    this.reloadCartList()
+    this.reloadCartList(this.userId)
 
   },
   methods:{
-    reloadCartList(){
-      cartListApi(this.userId)
+    reloadCartList(userId){
+      cartListApi(userId)
           .then(res => {
             this.cartList = res.data
           })
@@ -91,11 +91,13 @@ export default {
 
       console.log(orderList)
 
-      addOrderApi(localStorage.getItem('userId'),orderList)
-          .then(() => {
-            this.reloadCartList()
-              }
+      let userId = localStorage.getItem('userId')
 
+      addOrderApi(userId,orderList)
+          .then(() => {
+            this.cartList = []
+            this.reloadCartList(userId)
+              }
           )
     },
 
@@ -136,7 +138,7 @@ export default {
 <style scoped>
 
 /* 购物车 */
-.typs {
+.goodListHead {
   position: relative;
   margin: auto;
   margin-top: 50px;
@@ -149,32 +151,32 @@ export default {
   left: 4px;
   line-height: 50px;
 }
-.all {
+.goodCheckAll {
   position: absolute;
   left: 20px;
   bottom: 16px;
 }
-.good1 {
+.goodName {
   position: absolute;
   bottom: 16px;
   left: 120px;
 }
-.money {
+.goodPriceSingle {
   position: absolute;
   bottom: 16px;
   left: 580px;
 }
-.number {
+.goodNum {
   position: absolute;
   bottom: 16px;
   left: 750px;
 }
-.sum_money {
+.goodPrice {
   position: absolute;
   bottom: 16px;
   left: 920px;
 }
-.delete {
+.goodDelete {
   position: absolute;
   bottom: 16px;
   left: 1090px;

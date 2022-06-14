@@ -8,6 +8,8 @@
     <GoodItemCard :good-id="good.id" :good-price="good.price1" :good-name="good.name" :good-img="good.pthumbnail"></GoodItemCard>
   </el-container>
 
+
+
 </el-container>
 </template>
 
@@ -70,8 +72,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style scoped>
 

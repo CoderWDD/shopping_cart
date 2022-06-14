@@ -68,7 +68,7 @@ export async function addOrderApi(userId,cartList){
 }
 
 // 订单列表
-export async function orderList(userId){
+export async function orderListApi(userId){
     return await myAxios.get('/order/listByUser',{
         params: {
             userId: userId
