@@ -12,6 +12,8 @@
 
       </el-container>
 
+      <router-link class="logout" to="/" v-if="hasLogin" @click="logout">退出</router-link>
+
       <router-link class="order" to="/orderPage" v-if="hasLogin">订单列表</router-link>
 
       <router-link class="cart" to="/cartPage" v-if="hasLogin">购物车</router-link>
@@ -29,7 +31,15 @@ export default {
   name: "TopLine",
   props:[
       'hasLogin'
-  ]
+  ],
+  methods:{
+    logout(){
+      localStorage.removeItem('username')
+      localStorage.removeItem('password')
+      localStorage.removeItem('userId')
+      this.$router.push("/login");
+    }
+  }
 }
 </script>
 
@@ -62,6 +72,13 @@ export default {
 }
 
 .order{
+  float: right;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #c85a54;
+}
+
+.logout{
   float: right;
   text-decoration: none;
   color: #c85a54;

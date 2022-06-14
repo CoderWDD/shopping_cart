@@ -30,7 +30,7 @@
         <li class="zj1">总价：</li>
         <li class="zj2">{{sumMoney}}</li>
         <li class="result">
-          <button @click="summitOrder">去结算</button>
+          <button @click="summitOrder">结算</button>
         </li>
       </ul>
     </div>
@@ -100,11 +100,6 @@ export default {
               }
           )
     },
-
-    // 1 1 0
-    // 1 0 1
-    // 0 0 1
-
     checkAll(){
       this.checkAllFlag = !this.checkAllFlag
       this.cartList.forEach(element => {

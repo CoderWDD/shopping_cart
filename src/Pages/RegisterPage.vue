@@ -16,7 +16,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="registerClick" plain>注册</el-button>
+          <el-button class="registerButton" type="primary" @click="registerClick" plain>注册</el-button>
         </el-form-item>
       </el-form>
 
@@ -101,6 +101,7 @@ export default {
 
 .username :focus{
   outline: none;
+  text-align: center;
 }
 
 .password{
@@ -109,6 +110,7 @@ export default {
 
 .password :focus{
   outline: none;
+  text-align: center;
 }
 
 .username ::-webkit-input-placeholder{
@@ -117,6 +119,16 @@ export default {
 
 .password ::-webkit-input-placeholder{
   text-align: center;
+}
+
+.registerButton {
+  background-color: #ff5252;
+  text-align: center;
+  color: white;
+  border: none;
+  padding: 0px 20px;
+  height: 30px;
+  border-radius: 3px;
 }
 
 </style>
